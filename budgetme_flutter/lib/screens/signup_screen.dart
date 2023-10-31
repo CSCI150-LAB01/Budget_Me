@@ -3,6 +3,7 @@ import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -20,7 +21,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
         title: const Text(
           "Sign Up",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

@@ -1,29 +1,31 @@
+import 'package:budgetme_flutter/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
+import 'package:budgetme_flutter/screens/home_screen.dart';
 import 'package:budgetme_flutter/screens/signup_screen.dart';
 import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class UpdateBudgetScreen extends StatefulWidget {
+  const UpdateBudgetScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _UpdateBudgetScreen createState() => _UpdateBudgetScreen();
 
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _UpdateBudgetScreen extends State<UpdateBudgetScreen> {
+  //space for stuffs
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent, 
-        title: const Text('Welcome to your Budget',
+        title: const Text('Update Budget',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-    
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -49,22 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   
                   ),
               ),
-              Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                margin: const EdgeInsets.all(5),
-                width: double.infinity,
-                child: ElevatedButton(   
-                    onPressed: () {
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UpdateBudgetScreen())
-                        );//push
-                    }, //onPressed
-                  child: const Text('Update Budget'),
-                  ),
-                  ),
-              ),
+              Container(
+
+                height: 50,
+                width: 100,
+                decoration: BoxDecoration(color: Colors.transparent,
               
+                ),
+                
+              )
             ],
           ),
         ),
