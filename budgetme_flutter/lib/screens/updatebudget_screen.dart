@@ -58,21 +58,7 @@ class _UpdateBudgetScreen extends State<UpdateBudgetScreen> {
                 decoration: BoxDecoration(color: Colors.transparent,
               
                 ),
-                child:
-                  ElevatedButton(
-                    child: Text(
-                      "Update Budget",
-                      //style: TextStyle(color: Colors.black, fontSize: 25) //to change color of text
-                      ),
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut().then((value){
-                        print("Signed out");
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UpdateBudgetScreen()) //When a update page is created update this
-                        );//push
-                      }); // then
-                    }, //onPressed
-                  )
+                
               )
             ],
           ),
