@@ -1,4 +1,5 @@
 import 'package:budgetme_flutter/screens/home_screen.dart';
+import 'package:budgetme_flutter/screens/Questions_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       .then((value) {
                     print("Created New Account");
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                        MaterialPageRoute(builder: (context) => QuestionsScreen()));
                   }).onError((error, stackTrace) {
                     // ignore: avoid_print
                     print("Error: ${error.toString()}");
