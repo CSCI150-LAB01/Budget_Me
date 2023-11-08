@@ -43,25 +43,29 @@ class _QuestionsScreen extends State<QuestionsScreen> {
           child: Column(
             children: <Widget>[
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 1"),
+              questions("Whats your monthly income?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 2"),
+              questions("Do you pay rent/mortgage?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 3"),
+              questions("Do you have a car payment?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 4"),
+              questions("Do you have any loans/credit card payments?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 5"),
+              questions("How much do you spend on groceries?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 6"),
+              questions("How much do you spend on transportation?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 7"),
+              questions("Other NECESSARY spending?"),
+              //Add a text field above to demonstarte how we want them to respond
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 8"),
+              questions("How much do you hope to save per month?"),
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 9"),
+              questions("How much do you spend on leisure per month?"),
+              //End of Questions
               const SizedBox(height:30,),//Buffer spaces
-              questions("Question 10"),
+              confirmButton(context, (){
+                Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen()));
+              })//confirm button
             ],
           ),
         ),
