@@ -23,7 +23,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent, 
-        title: const Text('First Join Questioneer',
+        title: const Text('Answer The Following',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
