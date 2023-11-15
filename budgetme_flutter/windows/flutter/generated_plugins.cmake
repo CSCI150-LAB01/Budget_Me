@@ -3,11 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-<<<<<<< Updated upstream
-  desktop_webview_auth
-=======
   cloud_firestore
->>>>>>> Stashed changes
+  desktop_webview_auth
   firebase_auth
   firebase_core
 )
