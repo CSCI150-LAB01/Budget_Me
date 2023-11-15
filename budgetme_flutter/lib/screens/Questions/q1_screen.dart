@@ -39,26 +39,19 @@ class _q1 extends State<q1> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-<<<<<<< Updated upstream
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-=======
               20,
               MediaQuery.of(context).size.height * 0.2,
               20,
               0,
             ),
->>>>>>> Stashed changes
             child: Column(children: <Widget>[
               const SizedBox(
                 height: 30,
               ), //Buffer spaces
-<<<<<<< Updated upstream
               questions("Whats your monthly income?"),
               const SizedBox(
                 height: 30,
               ), //Buffer spaces
-              confirmButton(context, () {
-=======
               const Text(
                 "What's your monthly income?",
                 style: TextStyle(
@@ -101,7 +94,6 @@ class _q1 extends State<q1> {
                   'name': FirebaseAuth.instance.currentUser!.displayName,
                   'income': income,
                 }); //here
->>>>>>> Stashed changes
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => q2()));
               }) //confirm button
@@ -111,13 +103,10 @@ class _q1 extends State<q1> {
       ),
     );
   }
-<<<<<<< Updated upstream
-=======
 
   @override
   void dispose() {
     super.dispose();
     incomeController.dispose();
   }
->>>>>>> Stashed changes
 }
