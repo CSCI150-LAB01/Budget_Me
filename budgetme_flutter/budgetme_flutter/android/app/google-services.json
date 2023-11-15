@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307944359136",
+    "project_id": "sign-in-4c930",
+    "storage_bucket": "sign-in-4c930.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307944359136:android:9aefb4768604e2937ffc85",
+        "android_client_info": {
+          "package_name": "com.example.budgetme_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSRNCATSYleXRoeDkt9CSZLHxBXx94dJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

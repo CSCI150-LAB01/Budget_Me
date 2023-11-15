@@ -10,20 +10,20 @@ Image logoWidget(String imageName) {
     color: Colors.white,
   );
 }
-TextField textbox(String text){
-  return TextField(
-    
-  );
+
+TextField textbox(String text) {
+  return TextField();
 }
+
 TextField questions(String text) {
   return TextField(
-  cursorColor: Colors.white,
-  style: TextStyle(color: Colors.white.withOpacity(0.9)),
+    cursorColor: Colors.white,
+    style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
       //prefixIcon: Icon(
-     //   icon,
-     //   color: Colors.white70,
-     // ),
+      //   icon,
+      //   color: Colors.white70,
+      // ),
       labelText: text,
       labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
       filled: true,
@@ -33,7 +33,7 @@ TextField questions(String text) {
           borderRadius: BorderRadius.circular(30.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
-    );
+  );
 }
 
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
@@ -65,23 +65,23 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   );
 }
 
-Container confirmButton(BuildContext context, Function onTap){
+Container confirmButton(BuildContext context, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
     margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
     child: ElevatedButton(
-      onPressed: (){
+      onPressed: () {
         onTap();
-      },//onPressed
+      }, //onPressed
       child: Text(
         'Continue',
         style: const TextStyle(
             color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        style: ButtonStyle(
-           backgroundColor: MaterialStateProperty.resolveWith(
+      ),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith(
           (states) {
             if (states.contains(MaterialState.pressed)) {
               return Colors.black26;
@@ -94,28 +94,28 @@ Container confirmButton(BuildContext context, Function onTap){
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        ),
       ),
-    );
-}//confirmButton
+    ),
+  );
+} //confirmButton
 
-Container updateButton(BuildContext context, Function onTap){
+Container updateButton(BuildContext context, Function onTap) {
   return Container(
     width: 50,
     height: 50,
     margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
     child: ElevatedButton(
-      onPressed: (){
+      onPressed: () {
         onTap();
-      },//onPressed
+      }, //onPressed
       child: Text(
         '+',
         style: const TextStyle(
             color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 24),
-        ),
-        style: ButtonStyle(
-           backgroundColor: MaterialStateProperty.resolveWith(
+      ),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith(
           (states) {
             if (states.contains(MaterialState.pressed)) {
               return Colors.black26;
@@ -128,10 +128,10 @@ Container updateButton(BuildContext context, Function onTap){
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        ),
       ),
-    );
-}//confirmButton
+    ),
+  );
+} //confirmButton
 
 Container signInUpButton(BuildContext context, bool isLogin, Function onTap) {
   return Container(

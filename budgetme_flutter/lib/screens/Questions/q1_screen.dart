@@ -1,5 +1,8 @@
+import 'package:budgetme_flutter/main.dart';
 import 'package:budgetme_flutter/screens/Questions/q2_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class q1 extends StatefulWidget {
@@ -36,25 +39,22 @@ class _q1 extends State<q1> {
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(
-                  height: 30,
-                ), //Buffer spaces
-                questions("Whats your monthly income?"),
-                const SizedBox(
-                  height: 30,
-                ), //Buffer spaces
-                confirmButton(context, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => q2()));
-                }) //confirm button
-              ]
-            ),
+            child: Column(children: <Widget>[
+              const SizedBox(
+                height: 30,
+              ), //Buffer spaces
+              questions("Whats your monthly income?"),
+              const SizedBox(
+                height: 30,
+              ), //Buffer spaces
+              confirmButton(context, () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => q2()));
+              }) //confirm button
+            ]),
           ),
+        ),
       ),
-      
-    ),
     );
   }
 }

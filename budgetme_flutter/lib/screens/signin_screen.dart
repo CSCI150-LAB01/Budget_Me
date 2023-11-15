@@ -73,49 +73,54 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
+
   Row forgotUsernameOption() {
     return Row(
-      //figure out alignment
-      children: [
-        const Text("Forgot Your Username?",
-        style: TextStyle(color: Colors.white70)
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ForgotUsernameScreen()));
-          },// on Tap
-          child: const Text(
-            "  Find Username",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        //figure out alignment
+        children: [
+          const Text("Forgot Your Username?",
+              style: TextStyle(color: Colors.white70)),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ForgotUsernameScreen()));
+            }, // on Tap
+            child: const Text(
+              "  Find Username",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-      ]
-    );
+        ]);
   }
+
   Row forgotPasswordOption() {
     return Row(
-      //figure out alignment
-      children: [
-        const Text("Forgot Your Password?",
-        style: TextStyle(color: Colors.white70)
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ForgotPasswordScreen()));
-          },// on Tap
-          child: const Text(
-            "  Find Password",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        //figure out alignment
+        children: [
+          const Text("Forgot Your Password?",
+              style: TextStyle(color: Colors.white70)),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ForgotPasswordScreen()));
+            }, // on Tap
+            child: const Text(
+              "  Find Password",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-      ]
-    );
+        ]);
   }
+
   Row signUpOption() {
     return Row(
-     // mainAxisAlignment: MainAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Don't have account?",
             style: TextStyle(color: Colors.white70)),
