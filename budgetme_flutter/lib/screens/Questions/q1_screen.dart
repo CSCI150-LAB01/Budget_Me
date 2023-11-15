@@ -1,8 +1,5 @@
-import 'package:budgetme_flutter/main.dart';
 import 'package:budgetme_flutter/screens/Questions/q2_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class q1 extends StatefulWidget {
