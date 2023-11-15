@@ -1,4 +1,4 @@
-import 'package:budgetme_flutter/screens/Questions_screen.dart';
+import 'package:budgetme_flutter/screens/Questions/q1_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => QuestionsScreen()));
+                            builder: (context) => q1()));
                   }).onError((error, stackTrace) {
                     // ignore: avoid_print
                     print("Error: ${error.toString()}");
