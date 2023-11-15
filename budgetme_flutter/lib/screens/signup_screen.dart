@@ -66,11 +66,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
-                    print("Created New Account");
+                    FirebaseAuth.instance.currentUser!
+                        .updateDisplayName(_userNameController.text);
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => q1()));
+                        context, MaterialPageRoute(builder: (context) => q1()));
                   }).onError((error, stackTrace) {
                     // ignore: avoid_print
                     print("Error: ${error.toString()}");

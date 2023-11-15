@@ -50,7 +50,11 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+<<<<<<< Updated upstream
         multiDexEnabled true
+=======
+	multiDexEnabled true
+>>>>>>> Stashed changes
     }
 
     buildTypes {
