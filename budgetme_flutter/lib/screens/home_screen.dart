@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
-
+import 'package:budgetme_flutter/widgets/bar_graph.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -17,6 +17,22 @@ class CardOne extends StatelessWidget {
 */
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  List<double> monthlyExpenses = [
+    5000.0, //total Budgte
+    1298.0, //monthlyIncome
+    800.0, //rent
+    378.0, //carPayment
+    120.0, //pets
+  ];
+  List<double> monthlyBudget = [
+    10000.0, //total Budgte
+    5000.0, //monthlyIncome
+    900.0, //rent
+    350.0, //carPayment
+    100.0, //pets
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Welcome to your Budget',
+          'Novembers Budget',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
@@ -44,38 +60,142 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Here is your Budget!...",
-                style: TextStyle(color: Colors.white.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 24),
-              ),
-              const SizedBox(height: 30,),
-               Text("Balance- ",
-                style: TextStyle(color: Colors.white.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),
-              ),
-               Text("1,000,000,000 ",
-                style: TextStyle(color: Colors.white.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 50),
-              ),
 
-              Container(
-                color: Colors.white,
-                child: Row(
-                  children: [
-                      Column(
+              SizedBox(
+                height: 250,
+                child: MyBarGraph(monthlyExpenses: monthlyExpenses, monthlyBudget: monthlyBudget,),
+                
+              ),
+              
+              const SizedBox(height: 10,),
+               
+
+              Column(
+                children: <Widget>[
+                //color: Colors.white,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBox3(
+                          "Remaining Balance:",
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBoxPos(
+                          "10,000"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBox3(
+                          "Remaining Monthly Budget: ",
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBoxPos(
+                          "5,000"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBox3(
+                          "Remaining Rent Budget:",
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBoxNeg(
+                          "-100"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBox3(
+                          "Remaining Car Budget:",
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBoxNeg(
+                          "-22"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBox3(
+                          "Remaining Pet Budget:",
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: textBoxNeg(
+                          "-20"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                ],
+
+                      /*Column(
                         children:[
                           Container(),
-                        Text("Budget Remaining- ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text("Total Spent- ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text("Allocation for ...- ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text("Allocation for ...- ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text("Allocation for ...- ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                        Text("Allocation for ...- ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                        SizedBox(height: 100,),
+                          Text("Total Budget:    ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
+                          Text("Monthly Income:  ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
+                          Text("Rent:            ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
+                          Text("Car Payments:    ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
+                          Text("pets:            ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
+                          SizedBox(height: 100,),
                         ]
               //Add the Budget Visuals Here
-                    ),
-                ]),
+                    ),*/
+                
               ),
 //------------------------------------------------------------------------------------------------------------------------------------
-              const SizedBox(height: 200,),
+              const SizedBox(height: 10,),
               updateButton(context, () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UpdateBudgetScreen()));
