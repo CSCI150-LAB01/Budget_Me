@@ -23,8 +23,8 @@ class _q1 extends State<q1> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Answer The Following',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'A few steps to complete registration',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -44,14 +44,15 @@ class _q1 extends State<q1> {
               20,
               0,
             ),
-            child: Column(children: <Widget>[
+
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+              textBox2("      1 of 10 Questions"),
               const SizedBox(
-                height: 30,
+                height: 40,
               ), //Buffer spaces
-              questions("Whats your monthly income?"),
-              const SizedBox(
-                height: 30,
-              ), //Buffer spaces
+             
               const Text(
                 "What's your monthly income?",
                 style: TextStyle(
@@ -60,7 +61,7 @@ class _q1 extends State<q1> {
                     fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               TextField(
                 cursorColor: Colors.white,
@@ -84,7 +85,11 @@ class _q1 extends State<q1> {
                   incomeController.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(
+                height: 320,
+              ),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String income = incomeController.text;
                 db
                     .collection('users')

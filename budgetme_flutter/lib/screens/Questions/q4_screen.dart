@@ -19,8 +19,8 @@ class _q4 extends State<q4> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Answer The Following',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'A few steps to complete registration',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -37,13 +37,25 @@ class _q4 extends State<q4> {
             padding: EdgeInsets.fromLTRB(
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                textBox2("      4 of 10 Questions"),
                 const SizedBox(
                   height: 30,
                 ), //Buffer spaces
-                questions("Do you have any loans/credit card payments?"),
+                const Text(
+                "Do you have loans/credit card payments?",
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+                questions("Nearest Whole Number"),
                 const SizedBox(
-                  height: 30,
+                  height: 330,
                 ), //Buffer spaces
                 confirmButton(context, () {
                   Navigator.push(context,
