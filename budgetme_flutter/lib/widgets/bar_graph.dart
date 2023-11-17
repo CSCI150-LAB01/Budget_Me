@@ -35,6 +35,7 @@ class MyBarGraph extends StatelessWidget{
         minY: 0,
         gridData: FlGridData(show: false,),
         borderData: FlBorderData(show: false,),
+        //backgroundColor: Colors.white,
         titlesData: FlTitlesData(
           show: true,
           rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -47,13 +48,13 @@ class MyBarGraph extends StatelessWidget{
             x: data.x,
             barRods: [
               BarChartRodData(toY: data.y,
-              color: Colors.red,
+              color: Colors.black,
               width: 20,
               borderRadius: BorderRadius.circular(4),
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
                 toY:  data.y2,
-                color: Color.fromARGB(255, 0, 67, 1),
+                color: Colors.grey[400],
               ),
               ),
             ],
