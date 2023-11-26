@@ -1,7 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:budgetme_flutter/widgets/bar_graph.dart';
+import 'package:budgetme_flutter/screens/Pages/home_page.dart';
+import 'package:budgetme_flutter/screens/Pages/UpdateBudget_page.dart';
+import 'package:budgetme_flutter/screens/Pages/updateIncome_page.dart';
+import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -18,33 +24,24 @@ class CardOne extends StatelessWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  List<double> monthlyExpenses = [
-    5000.0, //total Budgte
-    1298.0, //monthlyIncome
-    800.0, //rent
-    378.0, //carPayment
-    120.0, //pets
+  int _currentIndex = 0;
+  final screens = [
+    HomePage(),
+    UpdateBudgetPage(),
+    UpdateIncomePage(),
+    ProfilePage(),
   ];
-  List<double> monthlyBudget = [
-    10000.0, //total Budgte
-    5000.0, //monthlyIncome
-    900.0, //rent
-    350.0, //carPayment
-    100.0, //pets
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Novembers Budget',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Container(
+     
+      body: screens[_currentIndex],
+      /*
+      body: Container(//body:tabs[_currentIndex],
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
@@ -53,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Colors.blue,
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
+        
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
@@ -60,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-
+              
               SizedBox(
                 height: 250,
                 child: MyBarGraph(monthlyExpenses: monthlyExpenses, monthlyBudget: monthlyBudget,),
@@ -179,32 +177,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 ],
-
-                      /*Column(
-                        children:[
-                          Container(),
-                          Text("Total Budget:    ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                          Text("Monthly Income:  ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                          Text("Rent:            ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                          Text("Car Payments:    ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                          Text("pets:            ",style: TextStyle(color: Colors.black.withOpacity(0.9),fontWeight: FontWeight.bold,fontSize: 16),),
-                          SizedBox(height: 100,),
-                        ]
-              //Add the Budget Visuals Here
-                    ),*/
-                
               ),
 //------------------------------------------------------------------------------------------------------------------------------------
+              /*
               const SizedBox(height: 10,),
               updateButton(context, () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UpdateBudgetScreen()));
-                }) //confirm button
+                }), //confirm butto
+                */
             ]
             ),
           ),
         ),
+      ),*/
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        iconSize: 30,
+        selectedFontSize: 12,
+        unselectedFontSize: 10,
+        backgroundColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Colors.black,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_rounded),
+            label:'Update Budget',
+            backgroundColor: Colors.green,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_rounded),
+            label: 'Update Income',
+            backgroundColor: Colors.green,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            backgroundColor: Colors.black,
+          ),
+        ],
+        onTap: (index){
+          setState(() {
+            _currentIndex = index;
+          });
+        }
       ),
     );
   }
+
 }
