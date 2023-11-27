@@ -60,14 +60,15 @@ class _HomePage extends State<HomePage> {
                 
               ),
               
-              const SizedBox(height: 10,),
+              const SizedBox(height: 50),
                
 
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                 //color: Colors.white,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Flexible(
                       child: Padding(
@@ -88,7 +89,7 @@ class _HomePage extends State<HomePage> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Flexible(
                       child: Padding(

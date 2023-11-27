@@ -89,73 +89,43 @@ TextField textbox(String text) {
   return TextField();
 }
 
-TextField textBox2(String text){
-  return TextField(
+Text textBox2(String text){
+  return Text( text,
     style: TextStyle(
     color: Colors.white,
     fontSize: 30,
     fontWeight: FontWeight.bold,
-
-    ),
-    decoration: InputDecoration(
-      labelText: text,
-      labelStyle: TextStyle(color: Colors.white),
-
-      fillColor: Colors.white,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
-          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
   );
 }
 
-TextField textBox3(String text){
-  return TextField(
-    style: TextStyle(color: Colors.black.withOpacity(0.9),
-    fontWeight: FontWeight.bold,fontSize: 10,
+Text textBox3(String text){
+  return Text(text,
+    style: TextStyle(
+      color: Colors.black.withOpacity(0.9),
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
     ),
-    decoration: InputDecoration(
-      labelText: text,
-      labelStyle: TextStyle(color: Colors.black),
+   
+  );
+}
 
-      fillColor: Colors.black,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
-          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+Text textBoxPos(String text){
+  return Text(text,
+    style: TextStyle(
+      color: Color.fromARGB(255, 0, 67, 1),
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
     ),
   );
 }
 
-TextField textBoxPos(String text){
-  return TextField(
-    style: TextStyle(color: Colors.black,
-    fontWeight: FontWeight.bold,fontSize: 16,
-    ),
-    decoration: InputDecoration(
-      labelText: text,
-      labelStyle: TextStyle(color: Color.fromARGB(255, 0, 67, 1)),
-
-      fillColor: Colors.black,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
-          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
-    ),
-  );
-}
-
-TextField textBoxNeg(String text){
-  return TextField(
-    style: TextStyle(color: Colors.red,
-    fontWeight: FontWeight.bold,fontSize: 16,
-    ),
-    decoration: InputDecoration(
-      labelText: text,
-      labelStyle: TextStyle(color: Colors.red),
-
-      fillColor: Colors.black,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
-          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+Text textBoxNeg(String text){
+  return Text(text,
+    style: TextStyle(
+      color: Colors.red,
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
     ),
   );
 }
