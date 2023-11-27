@@ -48,7 +48,7 @@ class _q1 extends State<q1> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-              textBox2("      1 of 10 Questions"),
+              textBox2("1 of 10 Questions"),
               const SizedBox(
                 height: 40,
               ), //Buffer spaces
@@ -67,10 +67,6 @@ class _q1 extends State<q1> {
                 cursorColor: Colors.white,
                 style: TextStyle(color: Colors.white.withOpacity(0.9)),
                 decoration: InputDecoration(
-                  //prefixIcon: Icon(
-                  //   icon,
-                  //   color: Colors.white70,
-                  // ),
                   labelText: 'Nearest Whole Number',
                   labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
                   filled: true,

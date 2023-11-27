@@ -39,7 +39,7 @@ class _q9 extends State<q9> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                textBox2("      9 of 10 Questions"),
+                textBox2("9 of 10 Questions"),
                 const SizedBox(
                   height: 30,
                 ), //Buffer spaces

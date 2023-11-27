@@ -39,7 +39,7 @@ class _q10 extends State<q10> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                textBox2("      10 of 10 Questions"),
+                textBox2("10 of 10 Questions"),
                 const SizedBox(
                   height: 30,
                 ), //Buffer spaces
