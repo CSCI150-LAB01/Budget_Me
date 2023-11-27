@@ -38,16 +38,15 @@ class _HomeScreenState extends State<HomeScreen> {
    
     return Scaffold(
       extendBodyBehindAppBar: true,
-     
       body: screens[_currentIndex],
-
+      extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         iconSize: 30,
         selectedFontSize: 12,
         unselectedFontSize: 10,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

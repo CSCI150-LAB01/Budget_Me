@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Budget Me',
-        theme: ThemeData(primarySwatch: Colors.green),
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          primaryColor: Colors.green,
+        ),
         home: const SignInScreen());
   }
 }
