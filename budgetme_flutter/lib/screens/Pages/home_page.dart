@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:budgetme_flutter/widgets/bar_graph.dart';
-import 'package:budgetme_flutter/screens/home_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,166 +25,154 @@ class _HomePage extends State<HomePage> {
     100.0, //pets
   ];
   @override
-  Widget build(BuildContext context) =>Scaffold(
-    extendBodyBehindAppBar: true,
-
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Novembers Budget',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  Widget build(BuildContext context) => Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: const Text(
+            'Novembers Budget',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
         ),
-      ),
-      
-      body: Container(//body:tabs[_currentIndex],
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.green,
-            Colors.blue,
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-        ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              
-              SizedBox(
-                height: 250,
-                child: MyBarGraph(monthlyExpenses: monthlyExpenses, monthlyBudget: monthlyBudget,),
-                
-              ),
-              
-              const SizedBox(height: 50),
-               
+        body: Container(
+          //body:tabs[_currentIndex],
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Colors.green,
+              Colors.blue,
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                  20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 250,
+                      child: MyBarGraph(
+                        monthlyExpenses: monthlyExpenses,
+                        monthlyBudget: monthlyBudget,
+                      ),
+                    ),
 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                //color: Colors.white,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBox3(
-                          "Remaining Balance:",
+                    const SizedBox(height: 50),
+
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        //color: Colors.white,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBox3(
+                                  "Remaining Balance:",
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBoxPos("10,000"),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBoxPos(
-                          "10,000"
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBox3(
+                                  "Remaining Monthly Budget: ",
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBoxPos("5,000"),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBox3(
-                          "Remaining Monthly Budget: ",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBox3(
+                                  "Remaining Rent Budget:",
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBoxNeg("-100"),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBoxPos(
-                          "5,000"
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBox3(
+                                  "Remaining Car Budget:",
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBoxNeg("-22"),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBox3(
-                          "Remaining Rent Budget:",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBox3(
+                                  "Remaining Pet Budget:",
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: textBoxNeg("-20"),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      ],
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBoxNeg(
-                          "-100"
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBox3(
-                          "Remaining Car Budget:",
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBoxNeg(
-                          "-22"
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBox3(
-                          "Remaining Pet Budget:",
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: textBoxNeg(
-                          "-20"
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                ],
-              ),
 //------------------------------------------------------------------------------------------------------------------------------------
-              /*
+                    /*
               const SizedBox(height: 10,),
               updateButton(context, () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UpdateBudgetScreen()));
                 }), //confirm butto
                 */
-            ]
+                  ]),
             ),
           ),
         ),
-      ),
-  );
+      );
 }

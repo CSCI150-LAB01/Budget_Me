@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:budgetme_flutter/widgets/reusable.dart';
 
-class User{
+class User {
   final String imagePath;
   final String userName;
   final String emailAddress;
-
 
   const User({
     required this.imagePath,
@@ -14,8 +12,8 @@ class User{
   });
 }
 
-class UserPreferences{
-  static const myUser= User(
+class UserPreferences {
+  static const myUser = User(
     imagePath: 'https://i.redd.it/birhecrsd5u61.jpg',
     emailAddress: 'userEmail@gmail.com',
     userName: 'userName',
@@ -23,19 +21,21 @@ class UserPreferences{
 }
 
 Widget buildName(User user) => Column(
-  children: [
-    Text(
-      user.userName,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-    ),
-    const SizedBox(height: 10,),
-    Text(
-      user.emailAddress,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,color: Colors.white),
-
-    ),
-  ],
-);
+      children: [
+        Text(
+          user.userName,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          user.emailAddress,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+        ),
+      ],
+    );
 
 class ProfileWidget extends StatelessWidget {
   final String imagePath;
@@ -47,15 +47,15 @@ class ProfileWidget extends StatelessWidget {
     required this.imagePath,
     required this.onClicked,
     this.isEdit = false,
-  }): super(key:key);
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primary;
-  
+
     return Center(
-      child: Stack( 
-        children:[
+      child: Stack(
+        children: [
           buildImage(),
           Positioned(
             bottom: 0,
@@ -67,7 +67,7 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
-  Widget buildImage(){
+  Widget buildImage() {
     final image = NetworkImage(imagePath);
 
     return ClipOval(
@@ -83,31 +83,31 @@ class ProfileWidget extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget buildEditIcon(Color color) => buildCircle(
-      color: Colors.white,
-      all:3,
-      child: buildCircle(
-        color: color,
-        all: 8,
-        child: Icon(
-          isEdit ? Icons.add_a_photo: Icons.edit,
-          color: Colors.white,
-          size: 15,
+        color: Colors.white,
+        all: 3,
+        child: buildCircle(
+          color: color,
+          all: 8,
+          child: Icon(
+            isEdit ? Icons.add_a_photo : Icons.edit,
+            color: Colors.white,
+            size: 15,
+          ),
         ),
-      ),
-    ); 
+      );
 
   Widget buildCircle({
     required Widget child,
     required double all,
     required Color color,
-
-  }) => ClipOval(
-    child: Container(
-      padding: EdgeInsets.all(all),
-      child: child,
-      color: color,
-    ),
-  );
+  }) =>
+      ClipOval(
+        child: Container(
+          padding: EdgeInsets.all(all),
+          child: child,
+          color: color,
+        ),
+      );
 }
