@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/screens/Pages/home_page.dart';
-import 'package:budgetme_flutter/screens/Pages/UpdateBudget_page.dart';
-import 'package:budgetme_flutter/screens/Pages/updateIncome_page.dart';
+import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,8 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final screens = [
     HomePage(),
-    UpdateBudgetPage(),
-    UpdateIncomePage(),
+    InputExpensesPage(),
     ProfilePage(),
   ];
 
@@ -50,12 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings_rounded),
-              label: 'Update Budget',
-              backgroundColor: Colors.green,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings_rounded),
-              label: 'Update Income',
+              label: 'Input Expenses',
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(
