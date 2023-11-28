@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+AppBar buildAppBar(BuildContext context){
+  final icon = CupertinoIcons.clear_circled;
 
-
-
+      return AppBar(
+      leading: BackButton(),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      actions:[
+        IconButton(
+          icon: Icon(icon),
+          onPressed: () {},
+        ),
+      ],
+    );
+}
+////////////////////////////////////////////////////////////////////////////////
 class IndivBar{
   final int x;
   final double y;
@@ -51,7 +66,7 @@ class BarData{
     ];
   }
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Widget getBottomTitle(double value, TitleMeta meta){
   const style = TextStyle(
     color: Colors.black,
@@ -75,7 +90,7 @@ Widget getBottomTitle(double value, TitleMeta meta){
   }
   return SideTitleWidget(child: text , axisSide: meta.axisSide);
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Image logoWidget(String imageName) {
   //Grab image from assets folder func
   return Image.asset(
@@ -86,11 +101,11 @@ Image logoWidget(String imageName) {
     color: Colors.white,
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 TextField textbox(String text) {
   return TextField();
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Text textBox2(String text){
   return Text( text,
     style: TextStyle(
@@ -100,7 +115,7 @@ Text textBox2(String text){
     ),
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Text textBox3(String text){
   return Text(text,
     style: TextStyle(
@@ -111,7 +126,7 @@ Text textBox3(String text){
    
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Text textBoxPos(String text){
   return Text(text,
     style: TextStyle(
@@ -121,7 +136,7 @@ Text textBoxPos(String text){
     ),
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Text textBoxNeg(String text){
   return Text(text,
     style: TextStyle(
@@ -131,16 +146,12 @@ Text textBoxNeg(String text){
     ),
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 TextField questions(String text) {
   return TextField(
     cursorColor: Colors.white,
     style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
-      //prefixIcon: Icon(
-      //   icon,
-      //   color: Colors.white70,
-      // ),
       labelText: text,
       labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
       filled: true,
@@ -152,7 +163,7 @@ TextField questions(String text) {
     ),
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(
@@ -181,7 +192,7 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
         : TextInputType.emailAddress,
   );
 }
-
+////////////////////////////////////////////////////////////////////////////////
 Container confirmButton(BuildContext context, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
@@ -215,7 +226,7 @@ Container confirmButton(BuildContext context, Function onTap) {
     ),
   );
 } //confirmButton
-
+////////////////////////////////////////////////////////////////////////////////
 Container updateButton(BuildContext context, Function onTap) {
   return Container(
     width: 50,
@@ -249,7 +260,7 @@ Container updateButton(BuildContext context, Function onTap) {
     ),
   );
 } //confirmButton
-
+////////////////////////////////////////////////////////////////////////////////
 Container signInUpButton(BuildContext context, bool isLogin, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
@@ -284,3 +295,64 @@ Container signInUpButton(BuildContext context, bool isLogin, Function onTap) {
     ),
   );
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class TextFieldWidget extends StatefulWidget{
+  final String label;
+  final String text;
+  final ValueChanged<String> onChanged;
+
+  const TextFieldWidget({
+    Key? key,
+    required this.label,
+    required this.text,
+    required this.onChanged,
+  }):super(key: key);
+
+  @override
+  _TextFieldWidgetState createState() => _TextFieldWidgetState();
+}
+class _TextFieldWidgetState extends State<TextFieldWidget>{
+  late final TextEditingController controller;
+
+  @override
+  void initState(){
+    super.initState();
+
+    controller = TextEditingController(text: widget.text);
+  }
+  @override
+  void dispose(){
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        widget.label,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,),
+      ),
+      SizedBox(height: 10,),
+      TextField(
+        controller: controller,
+        cursorColor: Colors.white,
+        style: TextStyle(color: Colors.white.withOpacity(0.9)),
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+          filled: true,
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          fillColor: Colors.white.withOpacity(0.3),
+          border: OutlineInputBorder(
+            
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
