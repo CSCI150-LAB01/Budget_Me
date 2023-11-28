@@ -1,5 +1,7 @@
 import 'package:budgetme_flutter/screens/Questions/q7_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class q6 extends StatefulWidget {
@@ -10,6 +12,8 @@ class q6 extends StatefulWidget {
 }
 
 class _q6 extends State<q6> {
+  final db = FirebaseFirestore.instance;
+  final q6controller = TextEditingController();
   //space for stuffs
 
   @override
@@ -36,25 +40,65 @@ class _q6 extends State<q6> {
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(
-                  height: 30,
-                ), //Buffer spaces
-                questions("How much do you spend on transportation?"),
-                const SizedBox(
-                  height: 30,
-                ), //Buffer spaces
-                confirmButton(context, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => q7()));
-                }) //confirm button
-              ]
-            ),
+            child: Column(children: <Widget>[
+              const SizedBox(
+                height: 30,
+              ), //Buffer spaces
+              const Text(
+                "Any Additional Transportation Spending?",
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
+                cursorColor: Colors.white,
+                style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                decoration: InputDecoration(
+                  //prefixIcon: Icon(
+                  //   icon,
+                  //   color: Colors.white70,
+                  // ),
+                  labelText: 'Uber | Lyft | Bus?',
+                  labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+                  filled: true,
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  fillColor: Colors.white.withOpacity(0.3),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none)),
+                ),
+                onChanged: (value) {
+                  q6controller.text = value;
+                },
+              ), //Buffer spaces
+              confirmButton(context, () {
+                String transport = q6controller.text;
+                if (transport == "") {
+                  transport = '0';
+                }
+                db
+                    .collection('users')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .set({'transport': transport},
+                        SetOptions(merge: true)); //here
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const q7()));
+              }) //confirm button
+            ]),
           ),
+        ),
       ),
-      
-    ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    q6controller.dispose();
   }
 }

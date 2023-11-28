@@ -48,10 +48,6 @@ class _q1 extends State<q1> {
               const SizedBox(
                 height: 30,
               ), //Buffer spaces
-              questions("Whats your monthly income?"),
-              const SizedBox(
-                height: 30,
-              ), //Buffer spaces
               const Text(
                 "What's your monthly income?",
                 style: TextStyle(
