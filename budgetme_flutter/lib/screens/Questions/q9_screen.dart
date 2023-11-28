@@ -76,7 +76,9 @@ class _q9 extends State<q9> {
                   q9controller.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String leisure = q9controller.text;
                 if (leisure == "") {
                   leisure = '0';

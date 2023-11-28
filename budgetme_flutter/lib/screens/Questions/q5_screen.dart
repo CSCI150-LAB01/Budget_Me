@@ -75,8 +75,10 @@ class _q5 extends State<q5> {
                 onChanged: (value) {
                   q5controller.text = value;
                 },
-              ), //Buffer spaces
+              ),
+               const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String groceries = q5controller.text;
                 if (groceries == "") {
                   groceries = '0';
