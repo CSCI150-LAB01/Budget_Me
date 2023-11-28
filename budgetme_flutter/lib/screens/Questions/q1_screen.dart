@@ -44,15 +44,10 @@ class _q1 extends State<q1> {
               20,
               0,
             ),
-
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-              textBox2("1 of 10 Questions"),
+            child: Column(children: <Widget>[
               const SizedBox(
-                height: 40,
+                height: 30,
               ), //Buffer spaces
-             
               const Text(
                 "What's your monthly income?",
                 style: TextStyle(
