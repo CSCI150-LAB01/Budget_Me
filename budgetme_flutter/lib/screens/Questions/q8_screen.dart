@@ -23,8 +23,8 @@ class _q8 extends State<q8> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Answer The Following',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'A few steps to complete registration',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(

@@ -23,8 +23,8 @@ class _q1 extends State<q1> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Answer The Following',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'A few steps to complete registration',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -56,16 +56,12 @@ class _q1 extends State<q1> {
                     fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               TextField(
                 cursorColor: Colors.white,
                 style: TextStyle(color: Colors.white.withOpacity(0.9)),
                 decoration: InputDecoration(
-                  //prefixIcon: Icon(
-                  //   icon,
-                  //   color: Colors.white70,
-                  // ),
                   labelText: 'Nearest Whole Number',
                   labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
                   filled: true,
@@ -80,7 +76,11 @@ class _q1 extends State<q1> {
                   incomeController.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(
+                height: 320,
+              ),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String income = incomeController.text;
                 db
                     .collection('users')
