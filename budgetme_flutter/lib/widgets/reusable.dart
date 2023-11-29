@@ -226,11 +226,11 @@ Container confirmButton(BuildContext context, Function onTap) {
       ),
     ),
   );
-} //confirmButton
+} //confirmButto
 ////////////////////////////////////////////////////////////////////////////////
-Container updateButton(BuildContext context, Function onTap) {
+Widget updateBudget(BuildContext context, Function onTap) {
   return Container(
-    width: 50,
+    width: 150,
     height: 50,
     margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
@@ -239,9 +239,9 @@ Container updateButton(BuildContext context, Function onTap) {
         onTap();
       }, //onPressed
       child: Text(
-        '+',
+        'Update Budget',
         style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 24),
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
       ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith(
@@ -260,7 +260,42 @@ Container updateButton(BuildContext context, Function onTap) {
       ),
     ),
   );
-} //confirmButton
+} 
+////////////////////////////////////////////////////////////////////////////////
+
+Widget signOut(BuildContext context, Function onTap) {
+  return Container(
+    width: 150,
+    height: 50,
+    margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+    child: ElevatedButton(
+      onPressed: () {
+        onTap();
+      }, //onPressed
+      child: Text(
+        'Sign Out',
+        style: const TextStyle(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith(
+          (states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.black26;
+            }
+            return Colors.white;
+          },
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+      ),
+    ),
+  );
+} 
 ////////////////////////////////////////////////////////////////////////////////
 Container signInUpButton(BuildContext context, bool isLogin, Function onTap) {
   return Container(
