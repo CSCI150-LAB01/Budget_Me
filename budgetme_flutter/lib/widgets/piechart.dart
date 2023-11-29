@@ -1,3 +1,4 @@
+import 'package:budgetme_flutter/widgets/global.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -122,10 +123,6 @@ class _MyPieChartState extends State<MyPieChart> {
     });
   }
 
-  Map<String, Color> getCategoryColorMapping() {
-    return categoryColorMap;
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Map<String, double>>(
@@ -156,12 +153,18 @@ class _MyPieChartState extends State<MyPieChart> {
                 colorIndex++;
               }
             });
+
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) {
                 widget.onColorsShuffled(categoryColorMap);
               }
             });
           }
+          color_Map = categoryColorMap;
+          // ignore: avoid_print
+          print(color_Map);
+          // ignore: avoid_print
+          print('Color Map Stored!');
         }
 
         //Get Income Parameters

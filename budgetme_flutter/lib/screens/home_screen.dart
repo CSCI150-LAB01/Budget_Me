@@ -25,7 +25,7 @@ class CardOne extends StatelessWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Color> shuffledColors = getShuffledColors();
   Map<String, Color> categoryColors = {};
-  late List<Widget> screens; // Remove 'final' and 'const'
+  late List<Widget> screens;
 
   @override
   void initState() {
@@ -33,16 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
     // Initialize the screens array here
     screens = [
       TransactionPage(onColorsShuffled: (Map<String, Color> colors) {
-        // This callback now expects a Map<String, Color>
         onColorsShuffled(colors);
       }),
-            const ProfilePage(),
+      TransactionPage(onColorsShuffled: onColorsShuffled),
+      const ProfilePage(),
     ];
   }
 
   void onColorsShuffled(Map<String, Color> colors) {
     setState(() {
-      categoryColors = colors; // Ensure this is a Map<String, Color>
+      categoryColors = colors;
     });
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:budgetme_flutter/widgets/global.dart';
 
 // This is just a function, not a widget.
 void showAddExpenseDialog(
@@ -46,8 +47,8 @@ void showAddExpenseDialog(
                     spacing: 10.0, // Gap between adjacent chips
                     runSpacing: 10.0, // Gap between lines
                     children: categoryIcons.keys.map((String key) {
-                      Color chipColor = categoryColors[key] ??
-                          Colors.grey; // Default color if not found
+                      print(color_Map);
+                      Color chipColor = color_Map[key] ?? Colors.grey;
                       return ChoiceChip(
                         label: Text(key),
                         selected: selectedCategory == key,
