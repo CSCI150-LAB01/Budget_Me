@@ -42,14 +42,17 @@ List<PieChartSectionData> getPieChartSections(
     Map<String, double> data, int? touchedIndex, List<Color> shuffledColors) {
   int colorIndex = 0;
 
-  return data.entries.where((entry) => entry.key != "income").map((entry) {
+  return data.entries
+      .where((entry) =>
+          entry.key != "income" && entry.key != "email" && entry.key != "name")
+      .map((entry) {
     final color = shuffledColors[colorIndex % shuffledColors.length];
     colorIndex++;
 
     final isTouched = data.entries.toList().indexOf(entry) == touchedIndex;
     final fontSize = isTouched ? 18.0 : 10.0;
     final radius = isTouched ? 60.0 : 50.0;
-
+    color_Map[entry.key] = color;
     return PieChartSectionData(
       color: color, // You need to define this function
       value: entry.value,
@@ -139,32 +142,6 @@ class _MyPieChartState extends State<MyPieChart> {
 
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return const Text("No data available"); // Handle no data case
-        }
-
-        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-          // Shuffle colors only once when the data is received
-          if (categoryColorMap.isEmpty) {
-            shuffledColors.shuffle(Random());
-            int colorIndex = 0;
-            snapshot.data!.forEach((category, value) {
-              if (category != "income") {
-                categoryColorMap[category] =
-                    shuffledColors[colorIndex % shuffledColors.length];
-                colorIndex++;
-              }
-            });
-
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted) {
-                widget.onColorsShuffled(categoryColorMap);
-              }
-            });
-          }
-          color_Map = categoryColorMap;
-          // ignore: avoid_print
-          print(color_Map);
-          // ignore: avoid_print
-          print('Color Map Stored!');
         }
 
         //Get Income Parameters

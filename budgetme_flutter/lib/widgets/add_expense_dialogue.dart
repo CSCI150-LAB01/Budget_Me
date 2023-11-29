@@ -11,14 +11,14 @@ void showAddExpenseDialog(
   // List of categories
   // Mapping categories to icons
   Map<String, IconData> categoryIcons = {
-    'Vehicle': Icons.directions_car,
-    'Other': Icons.more_horiz,
-    'Groceries': Icons.local_grocery_store,
-    'Leisure': Icons.sports_esports,
-    'Loans': Icons.attach_money,
-    'Necessary': Icons.check_box,
-    'Housing': Icons.home,
-    'Transportation': Icons.directions_bus,
+    'car': Icons.directions_car,
+    'additional': Icons.more_horiz,
+    'groceries': Icons.local_grocery_store,
+    'leisure': Icons.sports_esports,
+    'loans': Icons.attach_money,
+    'necessary': Icons.check_box,
+    'rent': Icons.home,
+    'transport': Icons.directions_bus,
   };
 
   // Show the dialog
@@ -47,7 +47,6 @@ void showAddExpenseDialog(
                     spacing: 10.0, // Gap between adjacent chips
                     runSpacing: 10.0, // Gap between lines
                     children: categoryIcons.keys.map((String key) {
-                      print(color_Map);
                       Color chipColor = color_Map[key] ?? Colors.grey;
                       return ChoiceChip(
                         label: Text(key),
