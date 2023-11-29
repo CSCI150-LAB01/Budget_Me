@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
 import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final screens = [
     TransactionPage(),
-    UpdateBudgetScreen(),
+    InputExpensesPage(),
     ProfilePage(),
   ];
 
@@ -49,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.plus_one),
               label: 'Input Expenses',
-              icon: Icon(Icons.settings_rounded),
-              label: 'Update Income',
+              
+              
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(
