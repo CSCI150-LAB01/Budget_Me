@@ -1,3 +1,4 @@
+import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -32,10 +33,17 @@ class _InputExpensesPage extends State<InputExpensesPage> {
             padding: EdgeInsets.fromLTRB(
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Container(
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                 color: Colors.blue,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20), // Adjust as needed
+                    bottomRight: Radius.circular(20),
+                  ),
               ),
               child: Column(
+                
                 children: <Widget>[
                   const SizedBox(
                     height: 0,
@@ -43,15 +51,19 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                   //----------------------Start of Actual viewables--------------
 
                   const Text(
-                    "Provide some info about Your Expenses...",
+                    "Select Your category...",
                     style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
+                  Row(children: [
+                    updateButton(context, (){})
+                  ],),
                   const SizedBox(
                     height: 50,
                   ),
+
                   ///////////////////////////// 1st text field/////////////////////////////////////////
 
                   const Text(
@@ -59,33 +71,14 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         fontSize: 18,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
 
-                  TextField(
-                    cursorColor: Colors.white,
-                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
-                    decoration: InputDecoration(
-                      labelText: 'No Spaces|No Caps',
-                      labelStyle:
-                          TextStyle(color: Colors.white.withOpacity(0.9)),
-                      filled: true,
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      fillColor: Colors.white.withOpacity(0.3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none)),
-                    ),
-                    onChanged: (value) {
-                      incomeController.text = value;
-                    },
-                  ), //Buffer spaces
-
+                  
                   const SizedBox(
                     height: 30,
                   ),
@@ -104,11 +97,11 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                   ),
                   TextField(
                     cursorColor: Colors.white,
-                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                    style: TextStyle(color: Colors.black.withOpacity(0.9)),
                     decoration: InputDecoration(
                       labelText: 'Nearest Whole Number',
                       labelStyle:
-                          TextStyle(color: Colors.white.withOpacity(0.9)),
+                          TextStyle(color: Colors.black.withOpacity(0.9)),
                       filled: true,
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       fillColor: Colors.white.withOpacity(0.3),
