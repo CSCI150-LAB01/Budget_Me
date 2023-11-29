@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:budgetme_flutter/screens/Questions/q1_screen.dart';
 import 'package:budgetme_flutter/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 
 class ProfilePage extends StatefulWidget {
@@ -19,7 +21,7 @@ class _ProfilePage extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
+    const user = UserPreferences.myUser;
 
     return Scaffold(
     /* 
@@ -52,7 +54,7 @@ class _ProfilePage extends State<ProfilePage> {
               right: 10,
               bottom: 10,
               child: ListView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                   children: [
                     const SizedBox(height: 50,),
                     ProfileWidget(
