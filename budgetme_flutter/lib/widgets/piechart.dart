@@ -122,10 +122,6 @@ class _MyPieChartState extends State<MyPieChart> {
     });
   }
 
-  Map<String, Color> getCategoryColorMapping() {
-    return categoryColorMap;
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Map<String, double>>(
@@ -156,6 +152,7 @@ class _MyPieChartState extends State<MyPieChart> {
                 colorIndex++;
               }
             });
+
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) {
                 widget.onColorsShuffled(categoryColorMap);
