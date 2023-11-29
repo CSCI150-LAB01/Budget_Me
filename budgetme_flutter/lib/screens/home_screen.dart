@@ -22,6 +22,7 @@ class CardOne extends StatelessWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Color> shuffledColors = getShuffledColors();
+  Map<String, Color> categoryColors = {};
   late List<Widget> screens; // Remove 'final' and 'const'
 
   @override
@@ -29,15 +30,19 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     // Initialize the screens array here
     screens = [
+      TransactionPage(onColorsShuffled: (Map<String, Color> colors) {
+        // This callback now expects a Map<String, Color>
+        onColorsShuffled(colors);
+      }),
       TransactionPage(onColorsShuffled: onColorsShuffled),
       const InputExpensesPage(),
       const ProfilePage(),
     ];
   }
 
-  void onColorsShuffled(List<Color> colors) {
+  void onColorsShuffled(Map<String, Color> colors) {
     setState(() {
-      shuffledColors = colors;
+      categoryColors = colors; // Ensure this is a Map<String, Color>
     });
   }
 
@@ -51,35 +56,49 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       body: screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.fixed,
-          iconSize: 30,
-          selectedFontSize: 12,
-          unselectedFontSize: 10,
-          backgroundColor: Colors.grey[300],
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.black,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_box_outlined),
-              label: 'Input Expenses',
-              backgroundColor: Colors.green,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-              backgroundColor: Colors.black,
+      floatingActionButton: Container(
+        height: fabSize,
+        width: 56,
+        margin: EdgeInsets.only(top: fabMargin), // Aligns FAB with BottomAppBar
+        decoration: BoxDecoration(
+          color: Colors.grey[300], // Match BottomAppBar color
+          shape: BoxShape.circle,
+        ),
+        child: FloatingActionButton(
+          onPressed: () => showAddExpenseDialog(context, categoryColors),
+          elevation: 0,
+          backgroundColor: Colors.green,
+          child: const Icon(Icons.add), // Adjust FAB color if necessary
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.grey[300], // Match FAB background color
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 0, // Set this to zero for seamless blending
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
+            ), // This will create the necessary spacing
+            IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              },
             ),
           ],
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          }),
+        ),
+      ),
     );
   }
 }

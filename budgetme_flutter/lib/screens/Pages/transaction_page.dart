@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TransactionPage extends StatefulWidget {
-  final Function(List<Color>) onColorsShuffled;
+  final Function(Map<String, Color>) onColorsShuffled;
 
   const TransactionPage({
     Key? key,
@@ -44,6 +44,7 @@ class _TransactionPageState extends State<TransactionPage> {
     if (userId == null) {
       return const Text("No user logged in");
     }
+
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -88,7 +89,7 @@ class _TransactionPageState extends State<TransactionPage> {
               top: MediaQuery.of(context).size.height * 0.5,
               left: 0,
               right: 0,
-              bottom: 45,
+              bottom: 35,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.45,
                 decoration: BoxDecoration(
