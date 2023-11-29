@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
       TransactionPage(onColorsShuffled: (Map<String, Color> colors) {
         onColorsShuffled(colors);
       }),
-      TransactionPage(onColorsShuffled: onColorsShuffled),
       const ProfilePage(),
     ];
   }
