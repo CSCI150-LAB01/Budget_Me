@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
+import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:budgetme_flutter/screens/Pages/UpdateBudget_page.dart';
 import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final screens = [
     TransactionPage(),
-    UpdateBudgetPage(),
+    UpdateBudgetScreen(),
     ProfilePage(),
   ];
 
