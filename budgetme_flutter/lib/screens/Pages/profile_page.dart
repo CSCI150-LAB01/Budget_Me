@@ -20,13 +20,6 @@ class _ProfilePage extends State<ProfilePage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Profile Page',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -54,15 +47,12 @@ class _ProfilePage extends State<ProfilePage> {
             ),
             buildName(user),
             updateButton(context, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => q1()));
-                }),
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => q1()));
+            }),
           ],
-          
         ),
-        
       ),
-      
     );
   }
 }

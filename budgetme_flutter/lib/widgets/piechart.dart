@@ -65,11 +65,13 @@ List<PieChartSectionData> getPieChartSections(
 }
 
 class MyPieChart extends StatefulWidget {
-  final String userId; // Add a field for the user ID
+  final String userId;
+  final Function(List<Color>) onColorsShuffled;
 
   const MyPieChart({
     Key? key,
     required this.userId,
+    required this.onColorsShuffled,
   }) : super(key: key); // Modify constructor to accept userId
   @override
   // ignore: library_private_types_in_public_api
@@ -99,7 +101,12 @@ class _MyPieChartState extends State<MyPieChart> {
   @override
   void initState() {
     super.initState();
-    shuffledColors = getShuffledColors(); // Initialize shuffledColors
+    shuffledColors = getShuffledColors();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        widget.onColorsShuffled(shuffledColors);
+      }
+    });
   }
 
   @override
