@@ -3,7 +3,6 @@ import 'package:budgetme_flutter/widgets/add_expense_dialogue.dart';
 import 'package:budgetme_flutter/widgets/piechart.dart';
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
-import 'package:budgetme_flutter/widgets/global.dart' as globals;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
