@@ -21,6 +21,7 @@ class CardOne extends StatelessWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Color> shuffledColors = getShuffledColors();
+  Map<String, Color> categoryColors = {};
   late List<Widget> screens; // Remove 'final' and 'const'
 
   @override
@@ -28,14 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     // Initialize the screens array here
     screens = [
-      TransactionPage(onColorsShuffled: onColorsShuffled),
+      TransactionPage(onColorsShuffled: (Map<String, Color> colors) {
+        // This callback now expects a Map<String, Color>
+        onColorsShuffled(colors);
+      }),
       const ProfilePage(),
     ];
   }
 
-  void onColorsShuffled(List<Color> colors) {
+  void onColorsShuffled(Map<String, Color> colors) {
     setState(() {
-      shuffledColors = colors;
+      categoryColors = colors; // Ensure this is a Map<String, Color>
     });
   }
 
@@ -58,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: BoxShape.circle,
         ),
         child: FloatingActionButton(
-          onPressed: () => showAddExpenseDialog(context, shuffledColors),
+          onPressed: () => showAddExpenseDialog(context, categoryColors),
           elevation: 0,
           backgroundColor: Colors.green,
           child: const Icon(Icons.add), // Adjust FAB color if necessary
@@ -85,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.person),
               onPressed: () {
                 setState(() {
-                  _currentIndex = 2;
+                  _currentIndex = 1;
                 });
               },
             ),

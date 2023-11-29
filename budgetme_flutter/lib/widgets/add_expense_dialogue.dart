@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 // This is just a function, not a widget.
-void showAddExpenseDialog(BuildContext context, List<Color> shuffledColors) {
+void showAddExpenseDialog(
+    BuildContext context, Map<String, Color> categoryColors) {
   TextEditingController nameController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   String? selectedCategory;
@@ -42,17 +43,26 @@ void showAddExpenseDialog(BuildContext context, List<Color> shuffledColors) {
                   const Text('Category',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   Wrap(
-                    spacing: 10.0, // gap between adjacent chips
-                    runSpacing: 10.0, // gap between lines
+                    spacing: 10.0, // Gap between adjacent chips
+                    runSpacing: 10.0, // Gap between lines
                     children: categoryIcons.keys.map((String key) {
+                      Color chipColor = categoryColors[key] ??
+                          Colors.grey; // Default color if not found
                       return ChoiceChip(
                         label: Text(key),
                         selected: selectedCategory == key,
+                        selectedColor: chipColor, // Use the color from the map
                         onSelected: (bool selected) {
                           setState(() {
                             selectedCategory = selected ? key : null;
                           });
                         },
+                        backgroundColor: chipColor
+                            .withAlpha(50), // Lighter shade for unselected
+                        labelStyle: TextStyle(
+                            color: selectedCategory == key
+                                ? Colors.white
+                                : Colors.black),
                       );
                     }).toList(),
                   ),

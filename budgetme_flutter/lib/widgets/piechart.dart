@@ -66,7 +66,7 @@ List<PieChartSectionData> getPieChartSections(
 
 class MyPieChart extends StatefulWidget {
   final String userId;
-  final Function(List<Color>) onColorsShuffled;
+  final Function(Map<String, Color>) onColorsShuffled;
 
   const MyPieChart({
     Key? key,
@@ -80,6 +80,7 @@ class MyPieChart extends StatefulWidget {
 
 class _MyPieChartState extends State<MyPieChart> {
   int? touchedIndex;
+  Map<String, Color> categoryColorMap = {};
   List<Color> shuffledColors = getShuffledColors();
   Timer? _debounce;
 
@@ -101,12 +102,28 @@ class _MyPieChartState extends State<MyPieChart> {
   @override
   void initState() {
     super.initState();
-    shuffledColors = getShuffledColors();
+    shuffledColors = [
+      Colors.red,
+      Colors.blue,
+      Colors.green,
+      Colors.orange,
+      Colors.purple,
+      Colors.amber,
+      Colors.cyan,
+      Colors.lime,
+      Colors.brown,
+      Colors.teal,
+    ];
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        widget.onColorsShuffled(shuffledColors);
+        widget.onColorsShuffled(categoryColorMap);
       }
     });
+  }
+
+  Map<String, Color> getCategoryColorMapping() {
+    return categoryColorMap;
   }
 
   @override
@@ -125,6 +142,26 @@ class _MyPieChartState extends State<MyPieChart> {
 
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return const Text("No data available"); // Handle no data case
+        }
+
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+          // Shuffle colors only once when the data is received
+          if (categoryColorMap.isEmpty) {
+            shuffledColors.shuffle(Random());
+            int colorIndex = 0;
+            snapshot.data!.forEach((category, value) {
+              if (category != "income") {
+                categoryColorMap[category] =
+                    shuffledColors[colorIndex % shuffledColors.length];
+                colorIndex++;
+              }
+            });
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                widget.onColorsShuffled(categoryColorMap);
+              }
+            });
+          }
         }
 
         //Get Income Parameters
