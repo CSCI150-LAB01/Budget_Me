@@ -47,7 +47,7 @@ class _TransactionPageState extends State<TransactionPage> {
               top: MediaQuery.of(context).size.height * 0.5, // Adjust as needed
               left: 0,
               right: 0,
-              bottom: 80,
+              bottom: 45,
               child: Container(
                 height: MediaQuery.of(context).size.height *
                     0.45, // Remaining height of the screen
