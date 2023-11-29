@@ -1,4 +1,3 @@
-import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
 import 'package:budgetme_flutter/widgets/add_expense_dialogue.dart';
 import 'package:budgetme_flutter/widgets/piechart.dart';
@@ -35,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
         onColorsShuffled(colors);
       }),
       TransactionPage(onColorsShuffled: onColorsShuffled),
-      const InputExpensesPage(),
       const ProfilePage(),
     ];
   }
