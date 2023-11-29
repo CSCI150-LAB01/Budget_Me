@@ -1,6 +1,8 @@
 import 'package:budgetme_flutter/screens/Pages/editProfile_page.dart';
 import 'package:budgetme_flutter/widgets/user.dart';
 import 'package:flutter/material.dart';
+import 'package:budgetme_flutter/widgets/reusable.dart';
+import 'package:budgetme_flutter/screens/Questions/q1_screen.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -51,9 +53,16 @@ class _ProfilePage extends State<ProfilePage> {
               height: 30,
             ),
             buildName(user),
+            updateButton(context, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => q1()));
+                }),
           ],
+          
         ),
+        
       ),
+      
     );
   }
 }
