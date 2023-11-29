@@ -75,11 +75,16 @@ class _q3 extends State<q3> {
                 onChanged: (value) {
                   q3controller.text = value;
                 },
-              ), 
-              const SizedBox(height: 320,),
+              ),
+              const SizedBox(
+                height: 320,
+              ),
               confirmButton(context, () {
                 const Alignment(1, -1);
                 String car = q3controller.text;
+                if (car == "") {
+                  car = '0';
+                }
                 db
                     .collection('users')
                     .doc(FirebaseAuth.instance.currentUser!.uid)

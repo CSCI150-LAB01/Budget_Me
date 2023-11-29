@@ -75,11 +75,16 @@ class _q4 extends State<q4> {
                 onChanged: (value) {
                   q4controller.text = value;
                 },
-              ), 
-              const SizedBox(height: 320,),
+              ),
+              const SizedBox(
+                height: 320,
+              ),
               confirmButton(context, () {
                 const Alignment(1, -1);
                 String loans = q4controller.text;
+                if (loans == "") {
+                  loans = '0';
+                }
                 db
                     .collection('users')
                     .doc(FirebaseAuth.instance.currentUser!.uid)
