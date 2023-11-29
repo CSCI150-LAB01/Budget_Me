@@ -2,7 +2,6 @@
 
 import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
-import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
 
@@ -10,6 +9,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 /*
@@ -50,8 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.plus_one),
               label: 'Input Expenses',
-              
-              
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(

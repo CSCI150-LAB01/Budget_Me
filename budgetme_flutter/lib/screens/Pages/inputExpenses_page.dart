@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class InputExpensesPage extends StatefulWidget {
   const InputExpensesPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _InputExpensesPage createState() => _InputExpensesPage();
 }
 

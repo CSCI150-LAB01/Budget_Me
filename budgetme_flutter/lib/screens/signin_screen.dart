@@ -3,8 +3,6 @@ import 'package:budgetme_flutter/screens/signup_screen.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:budgetme_flutter/screens/forgotpassword_screen.dart';
-import 'package:budgetme_flutter/screens/forgotusername_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -14,8 +12,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +58,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
-                    print("Signed In");
                   }).onError((error, stackTrace) {
                     //Show user some error
                   });
@@ -76,50 +73,6 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Row forgotUsernameOption() {
-    return Row(
-        //figure out alignment
-        children: [
-          const Text("Forgot Your Username?",
-              style: TextStyle(color: Colors.white70)),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ForgotUsernameScreen()));
-            }, // on Tap
-            child: const Text(
-              "  Find Username",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ]);
-  }
-
-  Row forgotPasswordOption() {
-    return Row(
-        //figure out alignment
-        children: [
-          const Text("Forgot Your Password?",
-              style: TextStyle(color: Colors.white70)),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ForgotPasswordScreen()));
-            }, // on Tap
-            child: const Text(
-              "  Find Password",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ]);
-  }
-
   Row signUpOption() {
     return Row(
       // mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +82,7 @@ class _SignInScreenState extends State<SignInScreen> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpScreen()));
+                MaterialPageRoute(builder: (context) => const SignUpScreen()));
           },
           child: const Text(
             "  Sign Up",
