@@ -38,13 +38,17 @@ class _InputExpensesPage extends State<InputExpensesPage> {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-          child: Column(
-            
+         
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Column(
             children: <Widget>[
               const SizedBox(height: 0,),
               //----------------------Start of Actual viewables--------------
 
-              const Text("Provide an small Update on...",
+              const Text("Provide some info about Your Expenses...",
                 style: TextStyle(
                     fontSize: 22,
                     color: Colors.white,
@@ -53,7 +57,7 @@ class _InputExpensesPage extends State<InputExpensesPage> {
               const SizedBox(height: 50,),
               ///////////////////////////// 1st text field/////////////////////////////////////////
 
-                  const Text("Monthly Income",
+                  const Text("Category of Expence",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         fontSize: 18,
@@ -63,11 +67,12 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                   const SizedBox(
                     height: 20,
                   ),
+                  
                   TextField(
                     cursorColor: Colors.white,
                     style: TextStyle(color: Colors.white.withOpacity(0.9)),
                     decoration: InputDecoration(
-                      labelText: 'Nearest Whole Number',
+                      labelText: 'No Spaces|No Caps',
                       labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
                       filled: true,
                       floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -86,7 +91,7 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                   
                   ///////////////////////// 2nd text field////////////////////////////////////////////
                   
-                  const Text("data2",
+                  const Text("Amount",
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -115,38 +120,9 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                   ), //Buffer spaces
                   const SizedBox(height: 30,),
 
-                  /////////////////////////// 3rd text field //////////////////////////////////////////////
-                  
-                  const Text("data3",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    cursorColor: Colors.white,
-                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
-                    decoration: InputDecoration(
-                      labelText: 'Nearest Whole Number',
-                      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
-                      filled: true,
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      fillColor: Colors.white.withOpacity(0.3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide:
-                              const BorderSide(width: 0, style: BorderStyle.none)),
-                    ),
-                    onChanged: (value) {
-                      incomeController.text = value;
-                    },
-                  ),
-              const SizedBox(height: 30,),
             ],),
         ),
+      ),
       ),
       ),
     );
