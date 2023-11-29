@@ -22,7 +22,7 @@ class _ProfilePage extends State<ProfilePage> {
     final user = UserPreferences.myUser;
 
     return Scaffold(
-      
+    /* 
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent, elevation: 0,
@@ -34,6 +34,7 @@ class _ProfilePage extends State<ProfilePage> {
             },
           ),
         ),
+        */
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -46,7 +47,7 @@ class _ProfilePage extends State<ProfilePage> {
         child: Stack(
           children: [
             Positioned(
-              top: 100,
+              top: 70,
               left: 10,
               right: 10,
               bottom: 10,
