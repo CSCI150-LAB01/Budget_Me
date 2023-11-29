@@ -1,3 +1,4 @@
+import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
 import 'package:budgetme_flutter/widgets/add_expense_dialogue.dart';
 import 'package:budgetme_flutter/widgets/piechart.dart';
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Initialize the screens array here
     screens = [
       TransactionPage(onColorsShuffled: onColorsShuffled),
+      const InputExpensesPage(),
       const ProfilePage(),
     ];
   }
@@ -49,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       body: screens[_currentIndex],
-      extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.plus_one),
+              icon: Icon(Icons.add_box_outlined),
               label: 'Input Expenses',
               backgroundColor: Colors.green,
             ),

@@ -1,6 +1,7 @@
 import 'package:budgetme_flutter/widgets/reusable.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class InputExpensesPage extends StatefulWidget {
   const InputExpensesPage({Key? key}) : super(key: key);
@@ -28,14 +29,55 @@ class _InputExpensesPage extends State<InputExpensesPage> {
             Colors.blue,
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+        child: Stack(
+          children: [
+             Positioned(
+              top: 200,
+              left: 0,
+              right: 0,
+              bottom: 200,
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.45,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                      
+                  child: Column(
+                    children: <Widget>[                 
+                      Text(
+                        'Edit Expenses'
+                            .toUpperCase(), // Small caps effect by converting to uppercase
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ), // Adjust the size as needed
+                        ),),
+                      const Text("data",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                      ),
+                    Wrap(
+                      children: List.generate(3, (index) => Text("Placeholder"))
+                    ),
+
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+            /*
             child: Container(
-              decoration:  BoxDecoration(
+              decoration:  const BoxDecoration(
                 color: Colors.blue,
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                     bottomLeft: Radius.circular(20), // Adjust as needed
@@ -120,8 +162,9 @@ class _InputExpensesPage extends State<InputExpensesPage> {
                 ],
               ),
             ),
+            */
           ),
-        ),
+      //  ),
       ),
     );
   }
