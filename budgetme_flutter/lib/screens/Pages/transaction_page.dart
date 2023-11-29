@@ -1,3 +1,5 @@
+import 'package:budgetme_flutter/widgets/piechart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TransactionPage extends StatefulWidget {
@@ -10,6 +12,10 @@ class TransactionPage extends StatefulWidget {
 class _TransactionPageState extends State<TransactionPage> {
   @override
   Widget build(BuildContext context) {
+    String? userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId == null) {
+      return const Text("No user logged in");
+    }
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -22,7 +28,7 @@ class _TransactionPageState extends State<TransactionPage> {
         ),
         child: Stack(
           children: [
-            // Top grey box
+            // Top grey circle
             Positioned(
               top: 50, // Adjust as needed
               left: 20,
@@ -39,7 +45,14 @@ class _TransactionPageState extends State<TransactionPage> {
                     bottomRight: Radius.circular(500), // Adjust as needed
                   ),
                 ),
-                // Add child content inside this container as needed
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 8.0),
+                  child: Center(
+                    child: MyPieChart(
+                      userId: userId,
+                    ),
+                  ),
+                ), // Add child content inside this container as needed
               ),
             ),
             // Bottom grey box
