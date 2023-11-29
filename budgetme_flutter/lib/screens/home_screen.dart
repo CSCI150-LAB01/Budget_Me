@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.plus_one),
+              icon: Icon(Icons.add_box_rounded),
               label: 'Input Expenses',
               backgroundColor: Colors.green,
             ),
