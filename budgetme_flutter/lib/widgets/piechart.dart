@@ -5,19 +5,57 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:math';
 import 'dart:async';
 
+import 'package:rxdart/rxdart.dart';
+
 Stream<Map<String, double>> getUserExpensesStream(String userId) {
-  return FirebaseFirestore.instance
+  // Stream from the 'users' collection (for static expenses)
+  Stream<Map<String, double>> staticExpensesStream = FirebaseFirestore.instance
       .collection('users')
       .doc(userId)
       .snapshots()
       .map((snapshot) {
-    if (snapshot.exists && snapshot.data() != null) {
-      Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-      return data.map((key, value) =>
-          MapEntry(key, double.tryParse(value.toString()) ?? 0.0));
-    } else {
-      return {};
+    Map<String, double> staticExpenses = {};
+    if (snapshot.exists) {
+      snapshot.data()!.forEach((key, value) {
+        if (key != "income" && key != "email" && key != "name") {
+          staticExpenses[key] = double.tryParse(value.toString()) ?? 0.0;
+        }
+      });
     }
+    return staticExpenses;
+  });
+
+  // Stream from the 'expenses' collection (for dynamic expenses)
+  Stream<Map<String, double>> dynamicExpensesStream = FirebaseFirestore.instance
+      .collection('expenses')
+      .where('userId', isEqualTo: userId)
+      .snapshots()
+      .map((snapshot) {
+    Map<String, double> dynamicExpenses = {};
+    for (var doc in snapshot.docs) {
+      var data = doc.data();
+      String category = data['category'];
+      double amount = data['amount'].toDouble();
+      dynamicExpenses.update(category, (existing) => existing + amount,
+          ifAbsent: () => amount);
+    }
+    return dynamicExpenses;
+  });
+
+  // Combining both streams
+  return Rx.combineLatest2(staticExpensesStream, dynamicExpensesStream,
+      (Map<String, double> staticExpenses,
+          Map<String, double> dynamicExpenses) {
+    Map<String, double> combinedExpenses = {};
+    staticExpenses.forEach((key, value) {
+      combinedExpenses.update(key, (existing) => existing + value,
+          ifAbsent: () => value);
+    });
+    dynamicExpenses.forEach((key, value) {
+      combinedExpenses.update(key, (existing) => existing + value,
+          ifAbsent: () => value);
+    });
+    return combinedExpenses;
   });
 }
 
@@ -145,14 +183,23 @@ class _MyPieChartState extends State<MyPieChart> {
         }
 
         //Get Income Parameters
-        double income = snapshot.data!['income'] ?? 0.0;
-        double totalExpenses = snapshot.data!.values
-            .fold(0.0, (sum, item) => item != income ? sum + item : sum);
+        double income = 0.0;
+        double totalExpenses = 0.0;
+        snapshot.data!.forEach((category, value) {
+          if (category != 'income' &&
+              category != 'email' &&
+              category != 'name') {
+            totalExpenses += value;
+          }
+        });
         double remainingBudget = income - totalExpenses;
 
         // Use fetched data to create pie chart sections
-        List<PieChartSectionData> sections =
-            getPieChartSections(snapshot.data!, touchedIndex, shuffledColors);
+        List<PieChartSectionData> sections = getPieChartSections(
+          snapshot.data!,
+          touchedIndex,
+          shuffledColors,
+        );
 
         return Stack(
           alignment: Alignment.center,

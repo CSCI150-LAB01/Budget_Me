@@ -44,59 +44,81 @@ class _q1 extends State<q1> {
               20,
               0,
             ),
-            child: Column(children: <Widget>[
-              const SizedBox(
-                height: 30,
-              ), //Buffer spaces
-              const Text(
-                "What's your monthly income?",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white.withOpacity(0.9)),
-                decoration: InputDecoration(
-                  labelText: 'Nearest Whole Number',
-                  labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
-                  filled: true,
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  fillColor: Colors.white.withOpacity(0.3),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      borderSide:
-                          const BorderSide(width: 0, style: BorderStyle.none)),
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 30,
+                ), //Buffer spaces
+                const Text(
+                  "What's your monthly income?",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
-                onChanged: (value) {
-                  incomeController.text = value;
-                },
-              ), //Buffer spaces
-              const SizedBox(
-                height: 320,
-              ),
-              confirmButton(context, () {
-                const Alignment(1, -1);
-                String income = incomeController.text;
-                if (income == "") {
-                  income = '0';
-                }
-                db
-                    .collection('users')
-                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                    .set({
-                  'email': FirebaseAuth.instance.currentUser!.email,
-                  'name': FirebaseAuth.instance.currentUser!.displayName,
-                  'income': income,
-                }); //here
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => q2()));
-              }) //confirm button
-            ]),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                  decoration: InputDecoration(
+                    labelText: 'Nearest Whole Number',
+                    labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+                    filled: true,
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    fillColor: Colors.white.withOpacity(0.3),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        borderSide: const BorderSide(
+                            width: 0, style: BorderStyle.none)),
+                  ),
+                  onChanged: (value) {
+                    incomeController.text = value;
+                  },
+                ), //Buffer spaces
+                const SizedBox(
+                  height: 320,
+                ),
+                confirmButton(context, () {
+                  String incomeString = incomeController.text;
+                  RegExp regExp = RegExp(r'^\d*\.?\d+$');
+
+                  if (regExp.hasMatch(incomeString)) {
+                    double income = double.parse(incomeString);
+                    db
+                        .collection('users')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .set({
+                      'email': FirebaseAuth.instance.currentUser!.email,
+                      'name': FirebaseAuth.instance.currentUser!.displayName,
+                      'income': income,
+                    });
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => q2()));
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Invalid Input"),
+                          content: const Text(
+                              "Please enter a valid number for income."),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                }), // End of confirmButton
+              ],
+            ),
           ),
         ),
       ),
@@ -105,7 +127,7 @@ class _q1 extends State<q1> {
 
   @override
   void dispose() {
-    super.dispose();
     incomeController.dispose();
+    super.dispose();
   }
 }
