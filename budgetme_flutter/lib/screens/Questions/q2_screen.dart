@@ -76,7 +76,9 @@ class _q2 extends State<q2> {
                   q2controller.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String rent = q2controller.text;
                 db
                     .collection('users')

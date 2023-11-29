@@ -75,8 +75,10 @@ class _q3 extends State<q3> {
                 onChanged: (value) {
                   q3controller.text = value;
                 },
-              ), //Buffer spaces
+              ), 
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String car = q3controller.text;
                 db
                     .collection('users')

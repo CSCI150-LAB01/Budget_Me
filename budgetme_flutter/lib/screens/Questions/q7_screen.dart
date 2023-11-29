@@ -76,7 +76,9 @@ class _q7 extends State<q7> {
                   q7controller.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String necessary = q7controller.text;
                 if (necessary == "") {
                   necessary = '0';

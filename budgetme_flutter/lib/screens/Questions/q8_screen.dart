@@ -76,7 +76,9 @@ class _q8 extends State<q8> {
                   q8controller.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String savings = q8controller.text;
                 if (savings == "") {
                   savings = '0';

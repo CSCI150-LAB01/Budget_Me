@@ -75,8 +75,10 @@ class _q4 extends State<q4> {
                 onChanged: (value) {
                   q4controller.text = value;
                 },
-              ), //Buffer spaces
+              ), 
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String loans = q4controller.text;
                 db
                     .collection('users')

@@ -76,7 +76,9 @@ class _q10 extends State<q10> {
                   q10controller.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String additional = q10controller.text;
                 if (additional == "") {
                   additional = '0';

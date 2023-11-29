@@ -76,7 +76,9 @@ class _q6 extends State<q6> {
                   q6controller.text = value;
                 },
               ), //Buffer spaces
+              const SizedBox(height: 320,),
               confirmButton(context, () {
+                const Alignment(1, -1);
                 String transport = q6controller.text;
                 if (transport == "") {
                   transport = '0';
