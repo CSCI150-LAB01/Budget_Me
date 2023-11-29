@@ -1,9 +1,11 @@
-import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
 import 'package:budgetme_flutter/widgets/add_expense_dialogue.dart';
 import 'package:budgetme_flutter/widgets/piechart.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
+import 'package:budgetme_flutter/main.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,9 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // This callback now expects a Map<String, Color>
         onColorsShuffled(colors);
       }),
-      TransactionPage(onColorsShuffled: onColorsShuffled),
-      const InputExpensesPage(),
-      const ProfilePage(),
+            const ProfilePage(),
     ];
   }
 
@@ -54,6 +54,18 @@ class _HomeScreenState extends State<HomeScreen> {
     double fabMargin = fabSize / 1.8; // Half the FAB size
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent, elevation: 0,
+        leading: Navigator.of(context).canPop() ? null : IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+            Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyApp()));
+            },
+          ),
+          
+        ),
       extendBody: true,
       body: screens[_currentIndex],
       floatingActionButton: Container(
