@@ -15,7 +15,7 @@ class User {
 class UserPreferences {
   static const myUser = User(
     imagePath: 'https://i.redd.it/birhecrsd5u61.jpg',
-    emailAddress: 'userEmail@gmail.com',
+    emailAddress: 'emailaddress@gmail.com',
     userName: 'userName',
   );
 }
