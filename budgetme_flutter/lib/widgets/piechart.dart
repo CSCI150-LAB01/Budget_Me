@@ -1,3 +1,4 @@
+import 'package:budgetme_flutter/widgets/global.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -159,6 +160,11 @@ class _MyPieChartState extends State<MyPieChart> {
               }
             });
           }
+          color_Map = categoryColorMap;
+          // ignore: avoid_print
+          print(color_Map);
+          // ignore: avoid_print
+          print('Color Map Stored!');
         }
 
         //Get Income Parameters
