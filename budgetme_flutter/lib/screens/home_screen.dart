@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:budgetme_flutter/screens/Pages/transaction_page.dart';
+import 'package:budgetme_flutter/screens/updatebudget_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:budgetme_flutter/screens/Pages/home_page.dart';
-import 'package:budgetme_flutter/screens/Pages/inputExpenses_page.dart';
 import 'package:budgetme_flutter/screens/Pages/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,8 +22,8 @@ class CardOne extends StatelessWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final screens = [
-    HomePage(),
-    InputExpensesPage(),
+    TransactionPage(),
+    UpdateBudgetScreen(),
     ProfilePage(),
   ];
 
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedFontSize: 12,
           unselectedFontSize: 10,
           backgroundColor: Colors.transparent,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
@@ -49,6 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.plus_one),
               label: 'Input Expenses',
+              icon: Icon(Icons.settings_rounded),
+              label: 'Update Income',
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(

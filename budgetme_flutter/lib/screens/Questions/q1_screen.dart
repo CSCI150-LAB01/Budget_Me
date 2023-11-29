@@ -76,10 +76,15 @@ class _q1 extends State<q1> {
                   incomeController.text = value;
                 },
               ), //Buffer spaces
-              const SizedBox(height: 320,),
+              const SizedBox(
+                height: 320,
+              ),
               confirmButton(context, () {
                 const Alignment(1, -1);
                 String income = incomeController.text;
+                if (income == "") {
+                  income = '0';
+                }
                 db
                     .collection('users')
                     .doc(FirebaseAuth.instance.currentUser!.uid)
