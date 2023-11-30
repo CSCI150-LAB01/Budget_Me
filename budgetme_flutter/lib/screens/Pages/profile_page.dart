@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:budgetme_flutter/screens/Questions/q1_screen.dart';
 import 'package:budgetme_flutter/main.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -20,8 +19,6 @@ class _ProfilePage extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     const userPic = UserPreferences.myUser;
-
-
 
     String? name;
     String? emailAddress;
@@ -107,7 +104,7 @@ class _ProfilePage extends State<ProfilePage> {
                     },
                   ),*/
                   buildName(userPic),
-                   // Prints the userId value
+                  // Prints the userId value
 
                   const SizedBox(
                     height: 100,
@@ -119,12 +116,16 @@ class _ProfilePage extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         updateBudget(context, () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => q1()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const q1()));
                         }),
                         signOut(context, () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => MyApp()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyApp()));
                         }),
                       ],
                     ),
@@ -138,4 +139,3 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 }
-

@@ -1,7 +1,9 @@
 import 'package:budgetme_flutter/widgets/piechart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class TransactionPage extends StatefulWidget {
   final Function(Map<String, Color>) onColorsShuffled;
@@ -17,34 +19,88 @@ class TransactionPage extends StatefulWidget {
 }
 
 class _TransactionPageState extends State<TransactionPage> {
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  User? user = FirebaseAuth.instance.currentUser;
   // Define a list of test expenses
-  List<Map<String, dynamic>> expenses = [
-    {
-      'name': 'UX essential training',
-      'date': 'Jun 30, 2019',
-      'amount': -150.00,
-      'categoryIcon': Icons.pie_chart_outline,
-      'categoryColor': Colors
-          .brown, // Assuming brown corresponds to a category color in your pie chart
-    },
-    {
-      'name': 'UI patterns for beginners',
-      'date': 'Jun 29, 2019',
-      'amount': -150.00,
-      'categoryIcon': Icons.web,
-      'categoryColor': Colors
-          .blue, // Assuming blue corresponds to a category color in your pie chart
-    },
-    // Add more test expenses as needed
-  ];
+  Stream<List<Map<String, dynamic>>> getUserExpenses() {
+    return firestore
+        .collection('expenses')
+        .where('userId', isEqualTo: user?.uid)
+        .orderBy('timestamp',
+            descending: true) // Change to false if you want ascending order
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    String? userId = FirebaseAuth.instance.currentUser?.uid;
-    if (userId == null) {
+    if (user == null) {
       return const Text("No user logged in");
     }
 
+    // Rest of your build method...
+    // Replace your ListView.builder with the following StreamBuilder
+
+    Expanded(
+      child: StreamBuilder<List<Map<String, dynamic>>>(
+        stream: getUserExpenses(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+          if (snapshot.error != null) {
+            // Handle errors
+            return Text('Something went wrong');
+          }
+          final expenses = snapshot.data ?? [];
+          return ListView.builder(
+            itemCount: expenses.length,
+            itemBuilder: (context, index) {
+              final expense = expenses[index];
+              return ListTile(
+                leading: const Icon(
+                  // You will need to map your categories to icons
+                  Icons.category, // Placeholder icon, replace with your logic
+                  color:
+                      Colors.blue, // Placeholder color, replace with your logic
+                ),
+                title: Text(
+                  expense['name'],
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                subtitle: Text(
+                  // Format the date as needed
+                  DateFormat('MMM dd, yyyy')
+                      .format(expense['timestamp'].toDate()),
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                trailing: Text(
+                  '\$${expense['amount'].toStringAsFixed(2)}',
+                  style: GoogleFonts.lato(
+                    color: expense['amount'] < 0 ? Colors.red : Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -78,7 +134,7 @@ class _TransactionPageState extends State<TransactionPage> {
                   padding: const EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 8.0),
                   child: Center(
                     child: MyPieChart(
-                      userId: userId,
+                      userId: FirebaseAuth.instance.currentUser!.uid,
                       onColorsShuffled: widget.onColorsShuffled,
                     ),
                   ),
@@ -112,44 +168,60 @@ class _TransactionPageState extends State<TransactionPage> {
                       ),
                     ),
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: expenses.length, // Your list of expenses
-                        itemBuilder: (context, index) {
-                          final expense =
-                              expenses[index]; // Single expense item
-                          return ListTile(
-                            leading: Icon(
-                              expense['categoryIcon'], // Icon for the category
-                              color: expense[
-                                  'categoryColor'], // Color for the category
-                            ),
-                            title: Text(
-                              expense['name'], // Name of the expense
-                              style: GoogleFonts.lato(
-                                textStyle: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20, // Adjust the size as needed
+                      child: StreamBuilder<List<Map<String, dynamic>>>(
+                        stream: getUserExpenses(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
+                          if (snapshot.error != null) {
+                            return Text('$snapshot.error');
+                          }
+                          final expenses = snapshot.data ??
+                              []; // Correct scope for 'expenses'
+                          return ListView.builder(
+                            itemCount: expenses.length,
+                            itemBuilder: (context, index) {
+                              final expense = expenses[index];
+                              return ListTile(
+                                leading: const Icon(
+                                  Icons
+                                      .category, // Placeholder icon, replace with your logic
+                                  color: Colors
+                                      .blue, // Placeholder color, replace with your logic
                                 ),
-                              ),
-                            ),
-                            subtitle: Text(
-                              expense['date'], // Date of the expense
-                              style: GoogleFonts.lato(
-                                textStyle: const TextStyle(
-                                  fontSize: 16, // Adjust the size as needed
+                                title: Text(
+                                  expense['name'],
+                                  style: GoogleFonts.lato(
+                                    textStyle: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            trailing: Text(
-                              expense['amount'].toString(),
-                              style: GoogleFonts.lato(
-                                color: expense['amount'] < 0
-                                    ? Colors.red
-                                    : Colors.black, // Expense amount color
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16, // Adjust the size as needed
-                              ),
-                            ),
+                                subtitle: Text(
+                                  DateFormat('MMM dd, yyyy').format(expense[
+                                          'timestamp']
+                                      .toDate()), // Correct usage of DateFormat
+                                  style: GoogleFonts.lato(
+                                    textStyle: const TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                trailing: Text(
+                                  '\$${expense['amount'].toStringAsFixed(2)}',
+                                  style: GoogleFonts.lato(
+                                    color: expense['amount'] < 0
+                                        ? Colors.red
+                                        : Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              );
+                            },
                           );
                         },
                       ),
@@ -158,7 +230,6 @@ class _TransactionPageState extends State<TransactionPage> {
                 ),
               ),
             ),
-            // Add more Positioned widgets as needed
           ],
         ),
       ),
