@@ -141,40 +141,53 @@ class _TransactionPageState extends State<TransactionPage> {
                                   categoryIcons[expense['category'] as String?];
                               Color? categoryColor =
                                   color_Map[expense['category'] as String?];
-                              return ListTile(
-                                leading: Icon(
-                                  categoryIcon ??
-                                      Icons.error, // Use error icon as fallback
-                                  color: categoryColor,
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: categoryColor?.withOpacity(
+                                      0.2), // Highlight with the category color
+                                  borderRadius: BorderRadius.circular(
+                                      10), // Rounded corners for the highlight
                                 ),
-                                title: Text(
-                                  expense['name'],
-                                  style: GoogleFonts.lato(
-                                    textStyle: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 4,
+                                    horizontal: 8), // Margin for each ListTile
+                                child: ListTile(
+                                  leading: Icon(
+                                    categoryIcon ??
+                                        Icons
+                                            .error, // Use error icon as fallback
+                                    color: categoryColor,
+                                    size: 28,
+                                  ),
+                                  title: Text(
+                                    expense['name'],
+                                    style: GoogleFonts.lato(
+                                      textStyle: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                subtitle: Text(
-                                  expense['timestamp'] != null
-                                      ? DateFormat('MMM dd, yyyy')
-                                          .format(expense['timestamp'].toDate())
-                                      : 'No date available', // Provide a default or error message
-                                  style: GoogleFonts.lato(
-                                    textStyle: const TextStyle(
+                                  subtitle: Text(
+                                    expense['timestamp'] != null
+                                        ? DateFormat('MMM dd, yyyy').format(
+                                            expense['timestamp'].toDate())
+                                        : 'No date available', // Provide a default or error message
+                                    style: GoogleFonts.lato(
+                                      textStyle: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  trailing: Text(
+                                    '\$${expense['amount'].toStringAsFixed(2)}',
+                                    style: GoogleFonts.lato(
+                                      color: expense['amount'] > 0
+                                          ? Colors.red
+                                          : Colors.black,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
-                                  ),
-                                ),
-                                trailing: Text(
-                                  '\$${expense['amount'].toStringAsFixed(2)}',
-                                  style: GoogleFonts.lato(
-                                    color: expense['amount'] > 0
-                                        ? Colors.red
-                                        : Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
                                   ),
                                 ),
                               );
