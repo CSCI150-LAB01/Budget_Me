@@ -17,7 +17,7 @@ Stream<Map<String, double>> getUserExpensesStream(String userId) {
     Map<String, double> staticExpenses = {};
     if (snapshot.exists) {
       snapshot.data()!.forEach((key, value) {
-        if (key != "income" && key != "email" && key != "name") {
+        if (key != "email" && key != "name") {
           staticExpenses[key] = double.tryParse(value.toString()) ?? 0.0;
         }
       });
