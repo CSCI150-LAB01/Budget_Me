@@ -226,13 +226,27 @@ class _MyPieChartState extends State<MyPieChart> {
             Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: Text(
-                  'Remaining: \$${remainingBudget.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize
+                      .min, // Use 'min' to reduce the column size to its children size
+                  children: <Widget>[
+                    const Text(
+                      'Remaining:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      '\$${remainingBudget.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: remainingBudget < 0 ? Colors.red : Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
