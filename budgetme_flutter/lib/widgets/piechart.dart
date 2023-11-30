@@ -205,7 +205,7 @@ class _MyPieChartState extends State<MyPieChart> {
           alignment: Alignment.center,
           children: [
             PieChart(
-              swapAnimationDuration: const Duration(milliseconds: 750),
+              swapAnimationDuration: const Duration(milliseconds: 500),
               swapAnimationCurve: Curves.easeInOutQuint,
               PieChartData(
                 sections: sections,

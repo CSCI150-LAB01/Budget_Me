@@ -1,3 +1,4 @@
+import 'package:budgetme_flutter/widgets/global.dart';
 import 'package:budgetme_flutter/widgets/piechart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,18 @@ class TransactionPage extends StatefulWidget {
 class _TransactionPageState extends State<TransactionPage> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
+
+  Map<String, IconData> categoryIcons = {
+    'car': Icons.directions_car,
+    'additional': Icons.more_horiz,
+    'groceries': Icons.local_grocery_store,
+    'leisure': Icons.sports_esports,
+    'loans': Icons.attach_money,
+    'necessary': Icons.check_box,
+    'rent': Icons.home,
+    'transport': Icons.directions_bus,
+  };
+
   // Define a list of test expenses
   Stream<List<Map<String, dynamic>>> getUserExpenses() {
     return firestore
@@ -54,17 +67,23 @@ class _TransactionPageState extends State<TransactionPage> {
           }
           if (snapshot.error != null) {
             // Handle errors
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
+          }
+          if (!snapshot.hasData) {
+            // Check for null data
+            return const Text('No data available');
           }
           final expenses = snapshot.data ?? [];
           return ListView.builder(
+            // Added 'return' here
             itemCount: expenses.length,
             itemBuilder: (context, index) {
               final expense = expenses[index];
+              IconData? categoryIcon = categoryIcons[expense['category']];
               return ListTile(
-                leading: const Icon(
-                  // You will need to map your categories to icons
-                  Icons.category, // Placeholder icon, replace with your logic
+                leading: Icon(
+                  categoryIcon ??
+                      Icons.error, // Fallback icon if category does not match
                   color:
                       Colors.blue, // Placeholder color, replace with your logic
                 ),
@@ -78,7 +97,6 @@ class _TransactionPageState extends State<TransactionPage> {
                   ),
                 ),
                 subtitle: Text(
-                  // Format the date as needed
                   DateFormat('MMM dd, yyyy')
                       .format(expense['timestamp'].toDate()),
                   style: GoogleFonts.lato(
@@ -184,12 +202,15 @@ class _TransactionPageState extends State<TransactionPage> {
                             itemCount: expenses.length,
                             itemBuilder: (context, index) {
                               final expense = expenses[index];
+                              IconData? categoryIcon =
+                                  categoryIcons[expense['category'] as String?];
+                              Color? categoryColor =
+                                  color_Map[expense['category'] as String?];
                               return ListTile(
-                                leading: const Icon(
-                                  Icons
-                                      .category, // Placeholder icon, replace with your logic
-                                  color: Colors
-                                      .blue, // Placeholder color, replace with your logic
+                                leading: Icon(
+                                  categoryIcon ??
+                                      Icons.error, // Use error icon as fallback
+                                  color: categoryColor,
                                 ),
                                 title: Text(
                                   expense['name'],
@@ -201,9 +222,10 @@ class _TransactionPageState extends State<TransactionPage> {
                                   ),
                                 ),
                                 subtitle: Text(
-                                  DateFormat('MMM dd, yyyy').format(expense[
-                                          'timestamp']
-                                      .toDate()), // Correct usage of DateFormat
+                                  expense['timestamp'] != null
+                                      ? DateFormat('MMM dd, yyyy')
+                                          .format(expense['timestamp'].toDate())
+                                      : 'No date available', // Provide a default or error message
                                   style: GoogleFonts.lato(
                                     textStyle: const TextStyle(
                                       fontSize: 16,
@@ -213,7 +235,7 @@ class _TransactionPageState extends State<TransactionPage> {
                                 trailing: Text(
                                   '\$${expense['amount'].toStringAsFixed(2)}',
                                   style: GoogleFonts.lato(
-                                    color: expense['amount'] < 0
+                                    color: expense['amount'] > 0
                                         ? Colors.red
                                         : Colors.black,
                                     fontWeight: FontWeight.bold,
