@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:budgetme_flutter/screens/Questions/q1_screen.dart';
 import 'package:budgetme_flutter/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -15,6 +16,19 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePage extends State<ProfilePage> {
   //space for stuffs
+  void _signOut(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut(); // Sign out from Firebase
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  const MyApp())); // Navigate to the desired screen after sign out
+    } catch (e) {
+      // Handle any errors here
+      print('Error signing out: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,10 +136,8 @@ class _ProfilePage extends State<ProfilePage> {
                                   builder: (context) => const q1()));
                         }),
                         signOut(context, () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MyApp()));
+                          _signOut(
+                              context); // Call the sign-out function when the button is pressed
                         }),
                       ],
                     ),
