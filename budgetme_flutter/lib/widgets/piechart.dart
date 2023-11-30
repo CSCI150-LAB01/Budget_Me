@@ -183,7 +183,7 @@ class _MyPieChartState extends State<MyPieChart> {
         }
 
         //Get Income Parameters
-        double income = 0.0;
+        double income = snapshot.data!['income'] ?? 0.0;
         double totalExpenses = 0.0;
         snapshot.data!.forEach((category, value) {
           if (category != 'income' &&
