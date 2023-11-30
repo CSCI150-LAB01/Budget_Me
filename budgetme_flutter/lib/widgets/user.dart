@@ -10,6 +10,8 @@ class User {
     required this.userName,
     required this.emailAddress,
   });
+
+  get userId => null;
 }
 
 class UserPreferences {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:budgetme_flutter/widgets/reusable.dart';
 import 'package:budgetme_flutter/screens/Questions/q1_screen.dart';
 import 'package:budgetme_flutter/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -18,7 +19,12 @@ class _ProfilePage extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    const user = UserPreferences.myUser;
+    const userPic = UserPreferences.myUser;
+
+
+
+    String? name;
+    String? emailAddress;
 
     return Scaffold(
       /* 
@@ -57,7 +63,7 @@ class _ProfilePage extends State<ProfilePage> {
                     height: 50,
                   ),
                   ProfileWidget(
-                    imagePath: user.imagePath,
+                    imagePath: userPic.imagePath,
                     onClicked: () async {
                       Navigator.push(
                           context,
@@ -68,7 +74,41 @@ class _ProfilePage extends State<ProfilePage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  buildName(user),
+                  /*
+                  StreamBuilder<DocumentSnapshot>(
+                    stream: FirebaseFirestore.instance.collection('Users').doc(name).snapshots(),
+                    builder: (context, snapshot){
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      }
+                      if (!snapshot.hasData || snapshot.data == null) {
+                        return Text('No data available'); // Handle the case when there is no data
+                      }
+                    String userName = snapshot.data!['name'];
+                    return Text('User Name: $userName',
+                      style: TextStyle(fontSize: 24),
+                    );
+                    },
+                  ),
+                  
+                  StreamBuilder<DocumentSnapshot>(
+                    stream: FirebaseFirestore.instance.collection('Users').doc(emailAddress).snapshots(),
+                    builder: (context, snapshot){
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      }
+                      if (!snapshot.hasData || snapshot.data == null) {
+                        return Text('No data available'); // Handle the case when there is no data
+                      }
+                    String emailAddress = snapshot.data!['email'];
+                    return Text('Email Adress: $emailAddress',
+                      style: TextStyle(fontSize: 24),
+                    );
+                    },
+                  ),*/
+                  buildName(userPic),
+                   // Prints the userId value
+
                   const SizedBox(
                     height: 100,
                   ),
@@ -98,3 +138,4 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 }
+
