@@ -70,7 +70,7 @@ void showAddExpenseDialog(
                   TextField(
                     controller: amountController,
                     decoration: const InputDecoration(
-                      labelText: 'Budget',
+                      labelText: 'Amount',
                       hintText: 'Type amount',
                     ),
                     keyboardType:
